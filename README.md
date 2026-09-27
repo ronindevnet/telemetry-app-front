@@ -66,3 +66,34 @@ Com o Modo Debug ligado, aparecem:
 | Limpar Lista | `DELETE /matches` |
 | Limpar Armas | `DELETE /weapons` |
 | Link *Documentação da API* | `GET /` |
+
+---
+## Game Client (Unity)
+
+O jogo **Stand de Tiro Virtual** é o cliente que gera os dados de telemetria:
+ao final de cada partida, ele envia a sessão completa para a API
+(`POST /session`), e a partida passa a aparecer neste front-end.
+
+### Download e execução
+
+1. Baixe o jogo pelo Google Drive:
+   [https://drive.google.com/file/d/1e9xkZ3qBc0jXN_HOCvbzz686IPERbmpa/view?usp=drive_link](https://drive.google.com/file/d/1e9xkZ3qBc0jXN_HOCvbzz686IPERbmpa/view?usp=drive_link)
+2. Se o download vier compactado (`.zip`), extraia todo o conteúdo para uma pasta.
+3. Coloque a [API de Telemetria](https://github.com/ronindevnet/telemetry-app-api)
+   em execução em `http://127.0.0.1:5000`. Sem ela, os dados da partida não são
+   registrados.
+4. Execute o arquivo **`Stand de Tiro Virtual.exe`**.
+
+> Se o Windows exibir o aviso *"O Windows protegeu o computador"*, clique em
+> **Mais informações** e depois em **Executar assim mesmo**.
+
+### Como jogar
+
+- **Armas:** o catálogo de armas fica à **esquerda da tela**. Use todas elas
+  durante a partida.
+- **Recarregar:** pressione **R**.
+- **Enviar os dados:** ao final, pressione **Tab**, digite o seu **game tag**
+  (nome de jogador) e envie os dados.
+
+Depois de enviar, abra (ou recarregue) o `index.html`: a partida aparece na
+lista, com as armas utilizadas e as estatísticas de cada uma.
