@@ -1,0 +1,405 @@
+body {
+    font-family: tahoma;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(225, 222, 199);
+}
+
+header {
+    background-color: rgb(225, 222, 199);
+    text-align: center;
+    position: relative;
+    width: 100%;
+}
+
+.title {
+    color: white;
+    width: 100%;
+    background-color: rgb(35, 32, 24);
+    display: inline-block;
+    padding: 2px 0px;
+    position: sticky;
+    top: 0px;
+}
+
+.banner {
+    padding: 30px 0px 10px 0px;
+    color: rgb(35, 32, 24);
+}
+
+.banner h2 {
+    margin: 0;
+}
+
+.banner p {
+    margin: 6px 0px 0px 0px;
+}
+
+/* --- alternância entre conteúdo normal e aviso de servidor offline --- */
+#offlineNotice {
+    display: none;
+}
+
+body.offline #mainContent {
+    display: none;
+}
+
+body.offline #offlineNotice {
+    display: flex;
+    justify-content: center;
+}
+
+.offline {
+    padding: 40px 20px;
+}
+
+.offline-card {
+    background-color: white;
+    border: 1px solid rgb(35, 32, 24);
+    border-radius: 4px;
+    max-width: 640px;
+    width: 100%;
+    padding: 24px 28px;
+    color: rgb(35, 32, 24);
+}
+
+.offline-card h2 {
+    margin: 0 0 12px 0;
+    color: #a33;
+}
+
+.offline-card p {
+    margin: 8px 0;
+    line-height: 1.5;
+}
+
+.offline-card code {
+    background-color: #f1efe8;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.offline-card pre {
+    background-color: rgb(35, 32, 24);
+    color: #eae7d8;
+    padding: 14px 16px;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 12px 0;
+}
+
+.offline-card .addBtn {
+    margin-top: 8px;
+}
+
+/* --- formulário de nova partida (visível apenas em modo debug) --- */
+.newItem {
+    background-color: rgb(225, 222, 199);
+    padding: 30px 40px;
+    display: none;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+body.debug .newItem {
+    display: flex;
+}
+
+#newPlayer,
+#newDuration,
+#newSpent {
+    margin: 0;
+    border: 1px solid rgb(35, 32, 24);
+    padding: 10px;
+    font-size: 16px;
+}
+
+#newPlayer { width: 260px; }
+#newDuration { width: 120px; }
+#newSpent { width: 90px; }
+
+.addBtn {
+    padding: 9px 12px;
+    background-color: rgb(35, 32, 24);
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 2px;
+    border: none;
+}
+
+.addBtn:hover {
+    background-color: #2ab53a;
+    color: white;
+}
+
+.addBtn.small {
+    padding: 7px 10px;
+    font-size: 14px;
+}
+
+.addBtn.danger {
+    background-color: #a33;
+}
+
+.addBtn.danger:hover {
+    background-color: #c0392b;
+}
+
+/* --- separador entre o bloco de adicionar partida e as ações em massa --- */
+.debug-sep {
+    display: none;
+    width: 70%;
+    max-width: 900px;
+    margin: 4px auto;
+    border: none;
+    border-top: 1px solid #cfccae;
+}
+
+body.debug .debug-sep {
+    display: block;
+}
+
+/* --- ações em massa (visíveis apenas em modo debug) --- */
+.bulk-actions {
+    display: none;
+    justify-content: center;
+    gap: 12px;
+    padding: 10px 0 20px 0;
+}
+
+body.debug .bulk-actions {
+    display: flex;
+}
+
+/* --- lista de partidas --- */
+.items {
+    margin: 0;
+    padding: 0 0 40px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.matches {
+    width: 70%;
+    max-width: 900px;
+}
+
+.emptyMsg {
+    color: #555;
+    font-style: italic;
+    margin: 8px 0;
+}
+
+/* --- cartão de partida --- */
+.match-card {
+    background-color: white;
+    border: 1px solid rgb(35, 32, 24);
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.match-header-row {
+    position: relative;
+}
+
+.match-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 44px 14px 14px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: start;
+    transition: 0.2s;
+}
+
+.match-header:hover {
+    background: rgb(200, 199, 199);
+}
+
+.toggle {
+    color: rgb(35, 32, 24);
+    width: 14px;
+}
+
+.match-id {
+    color: #888;
+    font-size: 14px;
+}
+
+.match-player {
+    font-weight: bold;
+    min-width: 140px;
+    text-transform: capitalize;
+}
+
+.match-meta {
+    color: #444;
+    font-size: 14px;
+    flex: 1;
+}
+
+.match-date {
+    color: #6b6650;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.match-arms {
+    background-color: rgb(35, 32, 24);
+    color: white;
+    border-radius: 10px;
+    padding: 3px 10px;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.delete-match {
+    display: none;
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    padding: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #888;
+    font-size: 18px;
+    line-height: 1;
+}
+
+body.debug .delete-match {
+    display: block;
+}
+
+.delete-match:hover {
+    color: #f44336;
+}
+
+/* --- corpo (foldout) --- */
+.match-body {
+    border-top: 1px solid #ddd;
+    padding: 14px;
+    background-color: #f7f6ef;
+}
+
+.match-body.hidden {
+    display: none;
+}
+
+.weapon-usages {
+    margin-bottom: 14px;
+}
+
+.weapon-usage {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    align-items: baseline;
+    padding: 8px 10px;
+    border: 1px solid #e0ddca;
+    background-color: white;
+    margin-bottom: 6px;
+}
+
+.weapon-usage .weapon-name {
+    min-width: 140px;
+}
+
+.weapon-usage span {
+    color: #444;
+    font-size: 14px;
+}
+
+/* --- formulário de adicionar arma (visível apenas em modo debug) --- */
+.add-weapon {
+    display: none;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-top: 10px;
+    border-top: 1px dashed #ccc;
+}
+
+body.debug .add-weapon {
+    display: flex;
+}
+
+.add-weapon select,
+.add-weapon input {
+    border: 1px solid rgb(35, 32, 24);
+    padding: 8px;
+    font-size: 14px;
+}
+
+.add-weapon .weapon-select { min-width: 150px; }
+.add-weapon .usage-shots { width: 90px; }
+.add-weapon .usage-accuracy { width: 130px; }
+.add-weapon .usage-reloads { width: 110px; }
+
+/* --- barra de modo debug (rodapé) --- */
+.debug-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    padding: 20px 0 40px 0;
+    border-top: 1px solid #cfccae;
+    margin-top: 10px;
+}
+
+/* aviso acima do toggle - some quando o modo debug ja esta ligado */
+.debug-hint {
+    margin: 0;
+    color: #6b6650;
+    font-size: 13px;
+    font-style: italic;
+}
+
+body.debug .debug-hint {
+    display: none;
+}
+
+/* link para a documentação da API (sempre visível) */
+.docs-link {
+    background: none;
+    border: none;
+    padding: 0;
+    color: rgb(35, 32, 24);
+    font-size: 13px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.docs-link:hover {
+    color: #2ab53a;
+}
+
+.debug-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgb(35, 32, 24);
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.debug-label input {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}

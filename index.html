@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <title>Telemetria de Jogo</title>
+</head>
+
+<body>
+     <!-- Cabeçalho de informações do sistema -->
+    <header>
+        <div class="title">
+            <h1>Telemetria de Jogo</h1>
+        </div>
+        <div class="banner">
+            <h2>Partidas registradas</h2>
+            <p>Cada partida lista as armas utilizadas pelo jogador e suas estatísticas.</p>
+        </div>
+    </header>
+
+    <!-- Conteúdo normal (exibido quando o servidor está disponível) -->
+    <div id="mainContent">
+        <!-- Lista de partidas (cada uma com as armas em foldout) -->
+        <section class="items">
+            <div id="matchList" class="matches"></div>
+        </section>
+
+        <!-- Bloco de edição no rodapé (visível apenas em modo debug) -->
+         <!-- Opções para adicionar uma nova partida -->
+        <section class="newItem">
+            <input type="text" id="newPlayer" placeholder="Jogador:">
+            <input type="text" id="newDuration" placeholder="Duração (s):">
+            <input type="text" id="newSpent" placeholder="Gasto:">
+            <button onclick="newItem()" class="addBtn">Adicionar partida</button>
+        </section>
+
+        <hr class="debug-sep">
+
+        <!-- Ações em massa (visíveis apenas em modo debug) -->
+        <section class="bulk-actions">
+            <button type="button" class="addBtn" onclick="simulateSession()">Simular sessão da Unity</button>
+            <button type="button" class="addBtn danger" onclick="clearList()">Limpar Lista</button>
+            <button type="button" class="addBtn danger" onclick="clearWeapons()">Limpar Armas</button>
+        </section>
+
+        <!-- Alternância do modo de edição manual de dados -->
+        <footer class="debug-bar">
+            <p class="debug-hint">Habilite o modo debug para acessar funcionalidades extra</p>
+            <label class="debug-label">
+                <input type="checkbox" id="debugToggle">
+                <span>Modo Debug</span>
+            </label>
+            <button type="button" class="docs-link" onclick="openDocs()">
+                <i class="bi bi-journal-code"></i> Documentação da API
+            </button>
+        </footer>
+    </div>
+
+    <!-- Estado de servidor offline (exibido quando a API não responde) -->
+    <section id="offlineNotice" class="offline">
+        <div class="offline-card">
+            <h2>Servidor está offline</h2>
+            <p>Não foi possível conectar à API de telemetria em
+                <code>http://127.0.0.1:5000</code>.</p>
+            <p>Para inicializar o servidor no Windows, dê um duplo-clique no
+                <code>run.bat</code> da pasta <code>telemetry_app_api</code>.
+                Ou, com o ambiente virtual ativado, execute no terminal:</p>
+            <pre>cd telemetry_app_api
+flask run --host 0.0.0.0 --port 5000</pre>
+            <p>Com o servidor no ar, clique em <strong>Tentar novamente</strong>.</p>
+            <button type="button" class="addBtn" onclick="retryConnection()">Tentar novamente</button>
+        </div>
+    </section>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
